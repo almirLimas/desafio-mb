@@ -1,0 +1,7 @@
+@import './reset.css';
+body {
+  color: red;
+}
+#app {
+  color: red;
+}

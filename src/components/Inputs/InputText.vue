@@ -1,15 +1,11 @@
 <template>
-  <input type="text" class="input-text" />
+  <label class="label">{{ props.label }}</label>
+  <input type="text" class="input" maxlength="100" v-model="model" />
 </template>
 
-<style scoped>
-.input-text {
-  border-radius: 10px;
-  height: 40px;
-  padding: 10px;
-  width: 100%;
-  outline: none;
-  border: 1px solid #969696;
-  color: rgb(58, 58, 58);
-}
-</style>
+<script setup>
+const model = defineModel()
+const props = defineProps(['label'])
+</script>
+
+<style scoped></style>

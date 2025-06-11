@@ -13,8 +13,8 @@
   margin-top: 10px;
 
   &:focus {
-    box-shadow: 0px 0px 5px 0px rgba(17, 140, 255, 0.699);
-    border-color: rgb(17, 140, 255);
+    box-shadow: 0px 0px 5px 0px #ef4723;
+    border-color: #ef4723;
   }
 }
 form {

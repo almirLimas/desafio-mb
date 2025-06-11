@@ -1,7 +1,9 @@
 <template>
-  <button type="submit" class="button__info">Continuar</button>
+  <button type="submit" @click.prevent="emit('continuar')" class="button__info">Continuar</button>
 </template>
-<script setup></script>
+<script setup>
+const emit = defineEmits(['continuar', 'delete'])
+</script>
 
 <style scoped>
 .button__info {

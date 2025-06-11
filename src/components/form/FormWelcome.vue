@@ -9,7 +9,7 @@
       </div>
     </div>
 
-    <ButtonInfo type="submit" class="" />
+    <ButtonInfo type="submit" @continuar="teste" />
   </form>
 </template>
 <script setup>
@@ -17,7 +17,13 @@ import { ref } from 'vue'
 import InputText from '../inputs/InputText.vue'
 import ButtonInfo from '../buttons/ButtonInfo.vue'
 
+const active = ref(0)
 const email = ref('')
+const emit = defineEmits(['next', 'delete'])
+
+const teste = () => {
+  emit('next', active.value)
+}
 </script>
 
 <style scoped>

@@ -11,8 +11,6 @@
       <label :for="option.value">{{ option.label }}</label>
     </div>
   </div>
-
-  <p>Selecionado: {{ model }}</p>
 </template>
 
 <script setup>
@@ -23,7 +21,7 @@ const props = defineProps({
   options: {
     type: Array,
     default: () => [
-      { label: '', value: '' },
+      { label: '', value: 0 },
       { label: '', value: '' },
     ],
   },

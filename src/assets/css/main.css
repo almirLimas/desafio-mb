@@ -22,6 +22,10 @@ form {
   width: 100%;
 }
 
+label {
+  color: white;
+}
+
 body {
   color: rgb(255, 255, 255);
   background-image: url(img/testeCamos.png);

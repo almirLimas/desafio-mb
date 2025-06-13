@@ -7,7 +7,7 @@
           <InputText v-model="store.objRegister.email" :label="'Endereço de e-mail'" />
         </div>
         <div class="col-12">
-          <InputRadio v-model="tipoDePessoa" :options="options" />
+          <InputRadio v-model="store.tipoDePessoa" :options="options" />
         </div>
       </div>
     </div>
@@ -16,19 +16,21 @@
   </form>
 </template>
 <script setup>
-import { ref } from 'vue'
 import { store } from '@/store/store'
 
 import InputText from '../inputs/InputText.vue'
 import ButtonInfo from '../buttons/ButtonInfo.vue'
 import InputRadio from '../inputs/InputRadio.vue'
 
-const tipoDePessoa = ref(['fisica, juridica'])
 const options = [
   { label: 'Pessoa Física', value: 0 },
   { label: 'Pessoa Jurídica', value: 1 },
 ]
 const continuar = () => {
+  if (store.objRegister.email === '') {
+    alert('Preencha o e-mail')
+    return
+  }
   store.nextForm()
 }
 </script>

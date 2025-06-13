@@ -45,9 +45,4 @@ const props = defineProps({
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
-label {
-  cursor: pointer;
-  font-size: 1rem;
-  color: #3a3a3a;
-}
 </style>

@@ -5,10 +5,10 @@
         <div class="form-container">
           {{ store.formActive }}
           <FormWelcome v-if="store.formActive === 0" />
-          <FormPf v-if="store.formActive === 1" />
-          <FormPj v-if="store.formActive === 2" />
-          <FormPassword v-if="store.formActive === 3" />
-          <FormReview v-if="store.formActive === 4" />
+          <FormPf v-if="store.formActive === 1 && store.tipoDePessoa === 0" />
+          <FormPj v-if="store.formActive === 1 && store.tipoDePessoa === 1" />
+          <FormPassword v-if="store.formActive === 2" />
+          <FormReview v-if="store.formActive === 3" />
         </div>
       </div>
     </div>

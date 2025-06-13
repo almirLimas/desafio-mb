@@ -1,44 +1,44 @@
 <template>
   <form class="container">
-    <h3 class="form-header">Pessoa Física</h3>
+    <h3 class="form-header">Seja Bem vindo (a)</h3>
     <div class="input-group">
       <div class="row">
-        <div class="col-6">
-          <InputText v-model="objRegister.nome" :label="'Nome'" />
+        <div class="col-12">
+          <InputText v-model="store.objRegister.email" :label="'Endereço de e-mail'" />
         </div>
-        <div class="col-6">
-          <InputText v-model="objRegister.cpf" :label="'CPF'" />
+        <div class="col-12">
+          <InputText v-model="store.objRegister.nome" :label="'Nome'" />
         </div>
-        <div class="col-6">
-          <InputText v-model="objRegister.dataNascimento" :label="'Data de nascimento'" />
+        <div class="col-12">
+          <InputText v-model="store.objRegister.cpf" :label="'CPF'" />
         </div>
-        <div class="col-6">
-          <InputText v-model="objRegister.telefone" :label="'Telefone'" />
+        <div class="col-12">
+          <InputText v-model="store.objRegister.data" :label="'Data de nascimento'" />
+        </div>
+        <div class="col-12">
+          <InputText v-model="store.objRegister.telefone" :label="'Telefone'" />
+        </div>
+        <div class="col-12">
+          <InputText v-model="store.objRegister.senha" :label="'Senha'" />
         </div>
       </div>
     </div>
 
-    <ButtonInfo type="submit" @continuar="proximo" />
+    <ButtonInfo type="submit" @click="continuar" />
   </form>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { store } from '@/store/store'
+
 import InputText from '../inputs/InputText.vue'
 import ButtonInfo from '../buttons/ButtonInfo.vue'
 
-const active = ref(2)
-
-const objRegister = ref({
-  nome: '',
-  cpf: '',
-  dataNascimento: '',
-  telefone: '',
-})
-
-const emit = defineEmits(['next', 'delete'])
-
-const proximo = () => {
-  emit('next', active.value)
+const continuar = () => {
+  if (store.objRegister.email === '') {
+    alert('Preencha o e-mail')
+    return
+  }
+  store.nextForm()
 }
 </script>
 

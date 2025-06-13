@@ -4,7 +4,7 @@
     <div class="input-group">
       <div class="row">
         <div class="col-12">
-          <InputText v-model="store.objRegister.password" :label="'Senha'" />
+          <InputPassword v-model="store.objRegister.password" :label="'Senha'" />
         </div>
         <div class="col-6">
           <ButtonPrevious type="submit" @click="previous" />
@@ -18,7 +18,7 @@
 </template>
 <script setup>
 import { store } from '@/store/store'
-import InputText from '../inputs/InputText.vue'
+import InputPassword from '../inputs/InputPassword.vue'
 import ButtonInfo from '../buttons/ButtonInfo.vue'
 import ButtonPrevious from '../buttons/ButtonPrevious.vue'
 

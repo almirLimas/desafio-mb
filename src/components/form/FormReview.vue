@@ -7,10 +7,28 @@
           <InputText v-model="store.objRegister.email" :label="'Endereço de e-mail'" />
         </div>
         <div class="col-12">
-          <InputText v-model="store.objRegister.nome" :label="'Nome'" />
+          <InputText
+            v-if="store.tipoDePessoa === 0"
+            v-model="store.objRegister.nome"
+            :label="'Nome'"
+          />
+          <InputText
+            v-if="store.tipoDePessoa === 1"
+            v-model="store.objRegister.razaoSocial"
+            :label="'Razão social'"
+          />
         </div>
         <div class="col-12">
-          <InputText v-model="store.objRegister.cpf" :label="'CPF'" />
+          <InputText
+            v-if="store.tipoDePessoa === 0"
+            v-model="store.objRegister.cpf"
+            :label="'CPF'"
+          />
+          <InputText
+            v-if="store.tipoDePessoa === 1"
+            v-model="store.objRegister.cnpj"
+            :label="'CNPJ'"
+          />
         </div>
         <div class="col-12">
           <InputText v-model="store.objRegister.data" :label="'Data de nascimento'" />
@@ -19,7 +37,7 @@
           <InputText v-model="store.objRegister.telefone" :label="'Telefone'" />
         </div>
         <div class="col-12">
-          <InputText v-model="store.objRegister.senha" :label="'Senha'" />
+          <InputPassword v-model="store.objRegister.senha" :label="'Senha'" />
         </div>
       </div>
     </div>
@@ -32,6 +50,7 @@ import { store } from '@/store/store'
 
 import InputText from '../inputs/InputText.vue'
 import ButtonInfo from '../buttons/ButtonInfo.vue'
+import InputPassword from '../inputs/InputPassword.vue'
 
 const continuar = () => {
   if (store.objRegister.email === '') {

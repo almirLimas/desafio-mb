@@ -1,3 +1,4 @@
+import { store } from '@/store/store'
 export const useValidation = () => {
   const isValidEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -56,9 +57,86 @@ export const useValidation = () => {
     return resultado === parseInt(digitos.charAt(1))
   }
 
+  const isValidFormPf = () => {
+    let isValid = true
+
+    for (const key in store.errorMessages) {
+      store.errorMessages[key] = ''
+    }
+
+    if (!store.objRegister.dataNascimento.trim()) {
+      store.errorMessages.dataNascimento = 'Informe a data de nascimento!'
+      isValid = false
+    }
+
+    if (!store.objRegister.nome.trim()) {
+      store.errorMessages.nome = 'Informe o nome!'
+      isValid = false
+    }
+
+    if (!store.objRegister.telefone.trim()) {
+      store.errorMessages.telefone = 'Informe o telefone!'
+      isValid = false
+    }
+
+    if (!isValidCPF(store.objRegister.cpf)) {
+      store.errorMessages.cpf = 'Informe um CPF valido!'
+      isValid = false
+    }
+
+    return isValid
+  }
+
+  const isValidFormPj = () => {
+    let isValid = true
+
+    for (const key in store.errorMessages) {
+      store.errorMessages[key] = ''
+    }
+
+    if (!store.objRegister.dataAbertura.trim()) {
+      store.errorMessages.dataAbertura = 'Informe a data de abertura!'
+      isValid = false
+    }
+
+    if (!store.objRegister.razaoSocial.trim()) {
+      store.errorMessages.razaoSocial = 'Informe a razão social!'
+      isValid = false
+    }
+
+    if (!store.objRegister.telefone.trim()) {
+      store.errorMessages.telefone = 'Informe o telefone!'
+      isValid = false
+    }
+
+    if (!isValidCNPJ(store.objRegister.cnpj)) {
+      store.errorMessages.cnpj = 'Informe um CNPJ valido!'
+      isValid = false
+    }
+
+    return isValid
+  }
+  const isValidFormPassword = () => {
+    console.log(store.objRegister.password)
+    let isValid = true
+
+    for (const key in store.errorMessages) {
+      store.errorMessages[key] = ''
+    }
+
+    if (!store.objRegister.password.trim()) {
+      store.errorMessages.password = 'Informe a senha!'
+      isValid = false
+    }
+
+    return isValid
+  }
   return {
     isValidEmail,
     isValidCPF,
     isValidCNPJ,
+    isValidFormPf,
+    isValidFormPj,
+    isValidFormPassword,
   }
 }

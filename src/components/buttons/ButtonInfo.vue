@@ -1,5 +1,5 @@
 <template>
-  <button type="submit" class="button__info">Continuar</button>
+  <button type="button" class="button__info">Continuar</button>
 </template>
 <script setup></script>
 

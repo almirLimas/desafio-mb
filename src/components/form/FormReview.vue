@@ -9,6 +9,7 @@
         <div class="col-12">
           <InputText
             v-if="store.tipoDePessoa === 0"
+            :disabled="true"
             v-model="store.objRegister.nome"
             :label="'Nome'"
           />
@@ -31,13 +32,22 @@
           />
         </div>
         <div class="col-12">
-          <InputText v-model="store.objRegister.data" :label="'Data de nascimento'" />
+          <InputText
+            v-if="store.tipoDePessoa === 0"
+            v-model="store.objRegister.dataNascimento"
+            :label="'Data de nascimento'"
+          />
+          <InputText
+            v-if="store.tipoDePessoa === 1"
+            v-model="store.objRegister.dataAbertura"
+            :label="'Data de abertura'"
+          />
         </div>
         <div class="col-12">
           <InputText v-model="store.objRegister.telefone" :label="'Telefone'" />
         </div>
         <div class="col-12">
-          <InputPassword v-model="store.objRegister.senha" :label="'Senha'" />
+          <InputText v-model="store.objRegister.password" :label="'Senha'" />
         </div>
       </div>
     </div>
@@ -50,7 +60,6 @@ import { store } from '@/store/store'
 
 import InputText from '../inputs/InputText.vue'
 import ButtonInfo from '../buttons/ButtonInfo.vue'
-import InputPassword from '../inputs/InputPassword.vue'
 
 const continuar = () => {
   if (store.objRegister.email === '') {

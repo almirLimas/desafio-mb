@@ -3,12 +3,13 @@
     <div class="row">
       <div class="col-lg-12 col-12">
         <div class="form-container">
-          {{ store.formActive }}
-          <FormWelcome v-if="store.formActive === 0" />
-          <FormPf v-if="store.formActive === 1 && store.tipoDePessoa === 0" />
-          <FormPj v-if="store.formActive === 1 && store.tipoDePessoa === 1" />
-          <FormPassword v-if="store.formActive === 2" />
-          <FormReview v-if="store.formActive === 3" />
+          <span class="container"> Passo {{ store.formActive }} de 4</span>
+
+          <FormWelcome v-if="store.formActive === 1" />
+          <FormPf v-if="store.formActive === 2 && store.tipoDePessoa === 0" />
+          <FormPj v-if="store.formActive === 2 && store.tipoDePessoa === 1" />
+          <FormPassword v-if="store.formActive === 3" />
+          <FormReview v-if="store.formActive === 4" />
         </div>
       </div>
     </div>

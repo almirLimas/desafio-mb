@@ -1,7 +1,11 @@
 <template>
-  <button type="button" class="button__info">Voltar</button>
+  <button type="button" class="button__info">{{ props.title }}</button>
 </template>
-<script setup></script>
+<script setup>
+const props = defineProps({
+  title: String,
+})
+</script>
 
 <style scoped>
 .button__info {

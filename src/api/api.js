@@ -11,8 +11,20 @@ export const register = async () => {
     })
 
     const data = await response.json()
-    console.log(data.message)
+    return data
   } catch (error) {
     console.error('Erro ao cadastrar:', error)
+  }
+}
+
+export const getRegister = async () => {
+  try {
+    const response = await fetch('http://localhost:3000/api/GetRegistration')
+    if (!response.ok) throw new Error('Erro ao buscar dados')
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.error('Erro ao buscar dados:', error)
+    return null
   }
 }

@@ -5,24 +5,26 @@
       <div class="row">
         <div class="col-12">
           <InputText v-model="store.objRegister.email" :label="'Endereço de e-mail'" />
-          <span v-if="isError" class="form-error">Informe um e-mail válido!</span>
+          <span v-if="store.errorMessages.email" class="form-error">{{
+            store.errorMessages.email
+          }}</span>
         </div>
         <div class="col-12">
-          <InputRadio v-model="store.tipoDePessoa" :options="options" />
+          <InputRadio v-model="store.objRegister.tipoDePessoa" :options="options" />
         </div>
       </div>
     </div>
 
-    <ButtonInfo @click="continuar" />
+    <ButtonInfo @click="nextForm" :title="'Continuar'" />
   </form>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { store } from '@/store/store'
 
-import InputText from '../inputs/InputText.vue'
-import ButtonInfo from '../buttons/ButtonInfo.vue'
-import InputRadio from '../inputs/InputRadio.vue'
+import InputText from '@/components/inputs/InputText.vue'
+import ButtonInfo from '@/components/buttons/ButtonInfo.vue'
+import InputRadio from '@/components/inputs/InputRadio.vue'
 import { useValidation } from '@/composables/useValitation'
 const isError = ref(false)
 const { isValidEmail } = useValidation()
@@ -31,9 +33,7 @@ const options = [
   { label: 'Pessoa Física', value: 0 },
   { label: 'Pessoa Jurídica', value: 1 },
 ]
-const continuar = () => {
-  console.log(isValidEmail(store.objRegister.email))
-
+const nextForm = () => {
   if (isValidEmail(store.objRegister.email)) {
     isError.value = false
     store.nextForm()
@@ -42,6 +42,23 @@ const continuar = () => {
     return
   }
 }
+
+watch(
+  () => store.objRegister.tipoDePessoa,
+  (valor) => {
+    if (valor === 0) {
+      store.objRegister.cnpj = ''
+      store.objRegister.dataAbertura = ''
+      store.objRegister.razaoSocial = ''
+    }
+
+    if (valor === 1) {
+      store.objRegister.cpf = ''
+      store.objRegister.dataNascimento = ''
+      store.objRegister.nome = ''
+    }
+  },
+)
 </script>
 
 <style scoped></style>

@@ -1,8 +1,9 @@
 import { reactive } from 'vue'
 
 export const store = reactive({
+  isLoading: false,
   formActive: 1,
-  tipoDePessoa: 0,
+
   nextForm() {
     this.formActive++
   },
@@ -22,6 +23,7 @@ export const store = reactive({
     telefone: '',
   },
   objRegister: {
+    tipoDePessoa: 0,
     nome: '',
     razaoSocial: '',
     email: '',

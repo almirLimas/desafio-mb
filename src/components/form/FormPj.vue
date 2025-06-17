@@ -34,10 +34,10 @@
           </span>
         </div>
         <div class="col-6">
-          <ButtonPrevious @click="previous" />
+          <ButtonPrevious @click="previous" :title="'Voltar'" />
         </div>
         <div class="col-6">
-          <ButtonInfo @click="continuar" />
+          <ButtonInfo @click="nextForm" :title="'Continuar'" />
         </div>
       </div>
     </div>
@@ -45,17 +45,18 @@
 </template>
 <script setup>
 import { store } from '@/store/store'
-import InputText from '../inputs/InputText.vue'
+import InputText from '@/components/inputs/InputText.vue'
 import { useFormatCnpj } from '@/composables/useFormatCnpj'
 import { useValidation } from '@/composables/useValitation'
+import ButtonInfo from '@/components/buttons/ButtonInfo.vue'
+import ButtonPrevious from '@/components/buttons/ButtonPrevious.vue'
+import InputPhone from '@/components/inputs/InputPhone.vue'
+import InputDate from '@/components/inputs/InputDate.vue'
+
 const { isValidFormPj } = useValidation()
 const { formatCnpj } = useFormatCnpj()
-import ButtonInfo from '../buttons/ButtonInfo.vue'
-import ButtonPrevious from '../buttons/ButtonPrevious.vue'
-import InputPhone from '../inputs/InputPhone.vue'
-import InputDate from '../inputs/InputDate.vue'
 
-const continuar = () => {
+const nextForm = () => {
   if (isValidFormPj()) {
     store.nextForm()
   } else {

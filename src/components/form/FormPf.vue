@@ -34,10 +34,10 @@
           }}</span>
         </div>
         <div class="col-6">
-          <ButtonPrevious @click="previous" />
+          <ButtonPrevious @click="previous" :title="'Voltar'" />
         </div>
         <div class="col-6">
-          <ButtonInfo @click="continuar" />
+          <ButtonInfo @click="nextForm" :title="'Continuar'" />
         </div>
       </div>
     </div>
@@ -45,22 +45,22 @@
 </template>
 <script setup>
 import { store } from '@/store/store'
-import InputText from '../inputs/InputText.vue'
-import ButtonInfo from '../buttons/ButtonInfo.vue'
+import InputText from '@/components/inputs/InputText.vue'
+import ButtonInfo from '@/components/buttons/ButtonInfo.vue'
 import { useFormatCpf } from '@/composables/useFormatCpf'
-const { formatCpf } = useFormatCpf()
 import { useValidation } from '@/composables/useValitation'
-const { isValidFormPf } = useValidation()
+import ButtonPrevious from '@/components/buttons/ButtonPrevious.vue'
+import InputDate from '@/components/inputs/InputDate.vue'
+import InputPhone from '@/components/inputs/InputPhone.vue'
 
-import ButtonPrevious from '../buttons/ButtonPrevious.vue'
-import InputDate from '../inputs/InputDate.vue'
-import InputPhone from '../inputs/InputPhone.vue'
+const { isValidFormPf } = useValidation()
+const { formatCpf } = useFormatCpf()
 
 const onInputCpf = (valor) => {
   store.objRegister.cpf = formatCpf(valor)
 }
 
-const continuar = () => {
+const nextForm = () => {
   if (isValidFormPf()) {
     store.nextForm()
   } else {

@@ -1,7 +1,15 @@
 import { store } from '@/store/store'
 export const useValidation = () => {
   const isValidEmail = (email) => {
+    for (const key in store.errorMessages) {
+      store.errorMessages[key] = ''
+    }
+
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+    if (!regex.test(email)) {
+      store.errorMessages.email = 'Informe um e-mail valido!'
+    }
     return regex.test(email)
   }
 
@@ -117,7 +125,6 @@ export const useValidation = () => {
     return isValid
   }
   const isValidFormPassword = () => {
-    console.log(store.objRegister.password)
     let isValid = true
 
     for (const key in store.errorMessages) {
@@ -131,6 +138,25 @@ export const useValidation = () => {
 
     return isValid
   }
+
+  const isValidFormReview = () => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!regex.test(store.objRegister.email)) {
+      store.errorMessages.email = 'Informe um e-mail valido!'
+      return false
+    }
+
+    if (!store.objRegister.password.trim()) {
+      store.errorMessages.password = 'Informe a senha!'
+      return false
+    }
+
+    if (store.objRegister.tipoDePessoa === 0) {
+      return isValidFormPf()
+    } else {
+      return isValidFormPj()
+    }
+  }
   return {
     isValidEmail,
     isValidCPF,
@@ -138,5 +164,6 @@ export const useValidation = () => {
     isValidFormPf,
     isValidFormPj,
     isValidFormPassword,
+    isValidFormReview,
   }
 }

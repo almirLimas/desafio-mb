@@ -26,7 +26,7 @@ import FormPj from '@/components/form/FormPj.vue'
 import FormPassword from '@/components/form/FormPassword.vue'
 import FormReview from '@/components/form/FormReview.vue'
 import LoadingSpinner from '@/components/spinner/LoadingSpinner.vue'
-const isEdit = ref(true)
+const isEdit = ref(false)
 
 onMounted(async () => {
   if (isEdit.value === true) {

@@ -19,9 +19,16 @@ export const register = async () => {
 
 export const getRegister = async () => {
   try {
-    const response = await fetch('http://localhost:3000/api/GetRegistration')
+    const response = await fetch('http://localhost:3000/api/registration', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
     if (!response.ok) throw new Error('Erro ao buscar dados')
     const data = await response.json()
+
+    store.objRegister = data[0]
     return data
   } catch (error) {
     console.error('Erro ao buscar dados:', error)

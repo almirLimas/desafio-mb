@@ -17,18 +17,33 @@
   </div>
 </template>
 <script setup>
-import { onMounted } from 'vue'
-import { store } from '@/store/store'
+import { watch, ref, onMounted } from 'vue'
 import { getRegister } from '@/api/api.js'
+import { store } from '@/store/store'
 import FormWelcome from '@/components/form/FormWelcome.vue'
 import FormPf from '@/components/form/FormPf.vue'
 import FormPj from '@/components/form/FormPj.vue'
 import FormPassword from '@/components/form/FormPassword.vue'
 import FormReview from '@/components/form/FormReview.vue'
 import LoadingSpinner from '@/components/spinner/LoadingSpinner.vue'
+const isEdit = ref(true)
 
-onMounted(() => {
-  getRegister()
+onMounted(async () => {
+  if (isEdit.value === true) {
+    await getRegister()
+  }
 })
+
+watch(
+  () => ({ ...store.objRegister }),
+  (navoValor, velhoValor) => {
+    for (const key in navoValor) {
+      if (navoValor[key] !== velhoValor[key]) {
+        store.errorMessages[key] = ''
+      }
+    }
+  },
+  { deep: true },
+)
 </script>
 <style scoped></style>

@@ -141,21 +141,27 @@ export const useValidation = () => {
 
   const isValidFormReview = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    let isValid = true
+
+    store.errorMessages = {}
+
+    if (store.objRegister.tipoDePessoa === 0) {
+      if (!isValidFormPf()) isValid = false
+    } else {
+      if (!isValidFormPj()) isValid = false
+    }
+
     if (!regex.test(store.objRegister.email)) {
-      store.errorMessages.email = 'Informe um e-mail valido!'
-      return false
+      store.errorMessages.email = 'Informe um e-mail válido!'
+      isValid = false
     }
 
     if (!store.objRegister.password.trim()) {
       store.errorMessages.password = 'Informe a senha!'
-      return false
+      isValid = false
     }
 
-    if (store.objRegister.tipoDePessoa === 0) {
-      return isValidFormPf()
-    } else {
-      return isValidFormPj()
-    }
+    return isValid
   }
   return {
     isValidEmail,

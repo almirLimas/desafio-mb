@@ -32,14 +32,17 @@
           <InputText
             v-if="store.objRegister.tipoDePessoa === 0"
             v-model="store.objRegister.cpf"
+            @update:modelValue="onInputCpf"
             :label="'CPF'"
           />
           <span v-if="store.errorMessages.cpf" class="form-error">{{
             store.errorMessages.cpf
           }}</span>
+
           <InputText
             v-if="store.objRegister.tipoDePessoa === 1"
             v-model="store.objRegister.cnpj"
+            @update:modelValue="onInputPj"
             :label="'CNPJ'"
           />
           <span v-if="store.errorMessages.cnpj" class="form-error">{{
@@ -65,7 +68,7 @@
           }}</span>
         </div>
         <div class="col-12">
-          <InputText v-model="store.objRegister.telefone" :label="'Telefone'" />
+          <InputPhone v-model="store.objRegister.telefone" :label="'Telefone'" />
           <span v-if="store.errorMessages.telefone" class="form-error">{{
             store.errorMessages.telefone
           }}</span>
@@ -76,6 +79,7 @@
             store.errorMessages.password
           }}</span>
         </div>
+
         <div class="col-6">
           <ButtonPrevious @click="previous" :title="'Voltar'" />
         </div>
@@ -94,15 +98,28 @@ import ButtonInfo from '@/components/buttons/ButtonInfo.vue'
 import ButtonPrevious from '@/components/buttons/ButtonPrevious.vue'
 import InputDate from '@/components/inputs/InputDate.vue'
 import { useValidation } from '@/composables/useValitation'
+import { useFormatCpf } from '@/composables/useFormatCpf'
+import InputPhone from '@/components/inputs/InputPhone.vue'
+import { useFormatCnpj } from '@/composables/useFormatCnpj'
 
+const { formatCnpj } = useFormatCnpj()
+const { formatCpf } = useFormatCpf()
 const { isValidFormReview } = useValidation()
 
+const onInputCpf = (valor) => {
+  store.objRegister.cpf = formatCpf(valor)
+}
+const onInputPj = () => {
+  store.objRegister.cnpj = formatCnpj(store.objRegister.cnpj)
+}
+
 const save = async () => {
-  console.log(isValidFormReview())
   if (isValidFormReview()) {
     try {
       store.isLoading = true
       await register()
+      alert('Cadastro realizado com sucesso!')
+      window.location.reload()
     } catch (error) {
       console.log('Erro:', error)
     } finally {

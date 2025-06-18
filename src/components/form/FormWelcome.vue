@@ -19,14 +19,13 @@
   </form>
 </template>
 <script setup>
-import { ref, watch } from 'vue'
+import { watch } from 'vue'
 import { store } from '@/store/store'
-
 import InputText from '@/components/inputs/InputText.vue'
 import ButtonInfo from '@/components/buttons/ButtonInfo.vue'
 import InputRadio from '@/components/inputs/InputRadio.vue'
 import { useValidation } from '@/composables/useValitation'
-const isError = ref(false)
+
 const { isValidEmail } = useValidation()
 
 const options = [
@@ -35,10 +34,8 @@ const options = [
 ]
 const nextForm = () => {
   if (isValidEmail(store.objRegister.email)) {
-    isError.value = false
     store.nextForm()
   } else {
-    isError.value = true
     return
   }
 }

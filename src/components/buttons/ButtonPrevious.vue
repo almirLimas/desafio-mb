@@ -1,5 +1,5 @@
 <template>
-  <button type="button" class="button__info">{{ props.title }}</button>
+  <button type="button" class="button-previous">{{ props.title }}</button>
 </template>
 <script setup>
 const props = defineProps({
@@ -8,7 +8,7 @@ const props = defineProps({
 </script>
 
 <style scoped>
-.button__info {
+.button-previous {
   background-color: transparent;
   border-radius: 4px;
   color: #ef4723;

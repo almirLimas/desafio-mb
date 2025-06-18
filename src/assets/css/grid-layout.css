@@ -1,19 +1,27 @@
 /* Container centralizado */
 .container {
-  width: 100%;
-  max-width: 1600px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  max-width: 1200px;
+  padding: 20px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.col-centered {
+  grid-column: 4 / span 6; /* Começa na coluna 4 e ocupa 6 colunas */
 }
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
 .row {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 1rem;
 }
-
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
 .col-1 {
   grid-column: span 1;
 }

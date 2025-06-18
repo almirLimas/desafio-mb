@@ -28,7 +28,7 @@ label {
 
 body {
   color: rgb(255, 255, 255);
-  background-image: url(img/testeCamos.png);
+  background-image: url(img/backgroundMB.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -50,4 +50,6 @@ button {
   height: 100vh;
   display: flex;
   align-items: center;
+  width: 100%;
+  justify-content: center;
 }
